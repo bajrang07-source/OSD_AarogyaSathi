@@ -1,107 +1,178 @@
-# ArogyaSathi AI
+# 🏥 AarogyaSathi AI — Offline Rural Health Assistant
 
-> **Offline-first rural health assistant for India**
-> Built with Flutter · Works without internet · Supports English, Hindi & Marathi
+> An **offline-first** AI health assistant for rural India — works without internet, supports English, Hindi & Marathi, built for Palghar District, Maharashtra.
 
 ---
 
-## Project Status
+## 🚀 Quick Start — Run on Any Laptop (No Flutter Needed!)
+
+### Prerequisites
+Only **Python** is required. It is pre-installed on macOS/Linux. For Windows, download from [python.org](https://www.python.org/downloads/) and check **"Add Python to PATH"** during install.
+
+---
+
+### ▶️ Windows
+1. Clone / download this repository
+2. **Double-click `start.bat`**
+3. The app opens automatically at **http://localhost:3000**
+
+```
+AarogyaSathi/
+└── start.bat   ← Double-click this!
+```
+
+---
+
+### ▶️ macOS / Linux
+1. Clone / download this repository
+2. Open Terminal in the project folder
+3. Run:
+```bash
+chmod +x start.sh
+./start.sh
+```
+4. The app opens at **http://localhost:3000**
+
+---
+
+### ▶️ Manual (Any OS with Python)
+```bash
+python -m http.server 3000 --directory build/web
+# Then open: http://localhost:3000
+```
+
+---
+
+## ✨ Features (Phases Completed)
 
 | Phase | Feature | Status |
 |-------|---------|--------|
-| **0** | Architecture & Project Skeleton | ✅ Complete |
-| 1 | Local Database & Static Content | 🔜 Next |
-| 2 | Offline First-Aid Knowledge Base | 🔜 Planned |
-| 3 | Rule-Based Symptom Triage | 🔜 Planned |
-| 4 | On-Device NLP | 🔜 Planned |
-| 5 | Smart Hospital Recommendation | 🔜 Planned |
-| 6 | Emergency Transport Directory | 🔜 Planned |
-| 7 | Offline Voice Assistant | 🔜 Planned |
-| 8 | Offline Maps & Routing | 🔜 Planned |
-| 9 | Prescription OCR | 🔜 Planned |
-| 10 | Medication Reminders | 🔜 Planned |
-| 11 | Encrypted Health Card | 🔜 Planned |
-| 12 | Localization (hi/mr/en) | 🔜 Planned |
-| 13 | Optional Cloud Sync | 🔜 Planned |
-| 14 | Hardening & Packaging | 🔜 Planned |
+| 1 | Offline Hospital Finder (Palghar District) | ✅ Done |
+| 2 | Offline First Aid Guide (8 conditions) | ✅ Done |
+| 3 | Rule-Based Symptom Triage Engine | ✅ Done |
+| 4 | Voice Input + NLP Keyword Extraction | ✅ Done |
+| 5 | Emergency Transport & Volunteers | ✅ Done |
+| 6 | OCR Prescription Scanner | 🔜 Coming |
+| 7 | Offline TTS (Text-to-Speech) | 🔜 Coming |
+| 8 | Offline STT (Whisper.cpp) | 🔜 Coming |
 
 ---
 
-## Setup
+## 📱 Screens
 
-### Prerequisites
+### 🏠 Home
+- SOS emergency button
+- Quick access to all health features
+- Offline status indicator
 
-- Flutter SDK ≥ 3.3.0 — [Install Flutter](https://docs.flutter.dev/get-started/install/windows)
-- Android SDK (API 21+) / Android Studio
-- A physical Android device or emulator
+### 🩺 Symptom Checker
+- Select symptoms from categorised tags
+- Instant offline triage (Critical / High / Moderate / Low)
+- Voice input — speak your symptoms and they auto-fill
+- All processing happens **100% on device**
 
-### Run
+### 🏥 First Aid Guide
+- Step-by-step offline guides for 8 emergencies:
+  Snake Bite, Burns, Cuts, Fractures, Heat Stroke, Fainting, Severe Bleeding, Choking
+- Searchable, works without internet
 
+### 📍 Hospital Finder
+- 20 real hospitals and PHCs in Palghar District
+- Filter by Emergency Capable / Type
+- One-tap directions and calling
+
+### 🚗 Emergency Transport
+- 10 local transport contacts (Ambulances, Autos, Drivers, ASHA Volunteers)
+- Filter by type (Ambulance / Auto / Driver / Volunteer)
+- 24×7 badge for round-the-clock availability
+- One-tap calling
+
+### 🪪 Health Card
+- Store personal health info, blood group, allergies, emergency contacts
+- Fully offline, stored locally on device
+
+---
+
+## 🛠️ Developer Setup (With Flutter)
+
+If you want to **modify the code** and rebuild:
+
+### Requirements
+- [Flutter SDK 3.44+](https://docs.flutter.dev/get-started/install)
+- Dart 3.12+
+
+### Install & Run
 ```bash
-# 1. Install dependencies
+# Clone
+git clone https://github.com/bajrang07-source/OSD_AarogyaSathi.git
+cd OSD_AarogyaSathi
+
+# Install dependencies
 flutter pub get
 
-# 2. Run on connected device or emulator
-flutter run
+# Run in browser (web)
+flutter run -d chrome
 
-# 3. Analyse code
-flutter analyze
+# Build optimized web release
+flutter build web --release
 
-# 4. Run tests
-flutter test
+# Run optimized build
+python -m http.server 3000 --directory build/web
+```
+
+### Build Android APK
+```bash
+flutter build apk --release
+# APK is at: build/app/outputs/apk/release/app-release.apk
+# Install on any Android phone — works fully offline!
 ```
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ```
 lib/
-├── core/
-│   ├── constants/    # AppRoutes, AppStrings
-│   ├── router/       # go_router configuration
-│   └── theme/        # Material 3 light + dark theme, AppColors
-├── data/
-│   ├── local_db/     # sqflite migrations (Phase 1+)
-│   ├── models/       # Dart model classes
-│   └── repositories/ # Repository pattern (Phase 1+)
-├── features/
+├── core/           # Theme, router, constants
+├── data/           # Models, repositories, SQLite seeder
+│   ├── local_db/   # DatabaseSeeder (hospitals, first aid, transport)
+│   ├── models/     # Hospital, FirstAidTopic, TransportContact, TriageResult
+│   └── repositories/
+├── features/       # UI feature modules
 │   ├── home/
 │   ├── symptom_checker/
 │   ├── first_aid/
 │   ├── hospitals/
-│   ├── health_card/
-│   └── transport/
-└── services/
-    ├── ai/           # On-device NLP (Phase 4)
-    ├── db/           # DatabaseService singleton
-    ├── location/     # GPS (Phase 5)
-    ├── ocr/          # Prescription OCR (Phase 9)
-    └── tts_stt/      # Voice (Phase 7)
+│   ├── transport/
+│   └── health_card/
+└── services/       # AI, DB, Location, OCR, TTS/STT
+    ├── ai/         # TriageEngine (rule-based), AiService (NLP)
+    ├── db/         # DatabaseService (SQLite/WASM)
+    └── tts_stt/    # TtsSttService (speech_to_text)
 ```
 
-## Key Technical Decisions
-
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| State management | `flutter_riverpod` | Compile-safe, testable, scales well |
-| Navigation | `go_router` | Flutter-team recommended, deep-link ready |
-| Local DB | `sqflite` | Battle-tested, no FFI issues |
-| Typography | Noto Sans | Supports Latin + Devanagari (Hindi/Marathi) |
-| Design | Material 3 | Accessible, consistent, responsive |
-
-## Offline-First Guarantee
-
-Every feature (Phases 1–12) is designed to work **100% without network access**.
-The only network-dependent feature (Phase 13 — cloud sync) is opt-in and additive.
-
-## Known Limitations (Phase 0)
-
-- All data shown is mock/placeholder — real DB seeding in Phase 1
-- GPS, camera, microphone permissions are declared but not yet used
-- No actual AI model loaded — Phase 4
-- Localization strings are hardcoded — Phase 12 will add ARB files
+**Tech Stack:** Flutter 3.44 · Dart 3.12 · Riverpod · go_router · sqflite · speech_to_text
 
 ---
 
-*Target platform: Android (API 21+). iOS support planned as stretch goal.*
+## 🌍 Language Support
+- 🇬🇧 English
+- 🇮🇳 Hindi
+- 🇮🇳 Marathi
+
+*(Multi-language ARB localisation in Phase 12)*
+
+---
+
+## 📍 Target Region
+Designed for **Palghar District, Maharashtra** — seeded with real hospitals, PHCs, and local transport contacts. Adaptable to any district by updating `lib/data/local_db/database_seeder.dart`.
+
+---
+
+## 🤝 Contributing
+Pull requests welcome! See open phases above for what's coming next.
+
+---
+
+## 📄 License
+MIT License — Free to use, modify, and distribute.
