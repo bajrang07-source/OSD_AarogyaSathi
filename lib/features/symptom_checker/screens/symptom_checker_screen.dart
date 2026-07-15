@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../data/models/triage_result_model.dart';
 import '../../../services/ai/triage_engine.dart';
+import '../../../services/ai/ai_service.dart';
+import '../../../services/tts_stt/tts_stt_service.dart';
 import '../providers/symptom_checker_provider.dart';
 
 /// Phase 3: Rule-based offline Symptom Checker.
@@ -16,6 +18,49 @@ class SymptomCheckerScreen extends ConsumerStatefulWidget {
 }
 
 class _SymptomCheckerScreenState extends ConsumerState<SymptomCheckerScreen> {
+  bool _isListening = false;
+  String _partialText = '';
+
+  Future<void> _startVoiceInput() async {
+    final tts = TtsSttService.instance;
+    final ai = AiService.instance;
+
+    setState(() {
+      _isListening = true;
+      _partialText = 'Listening...';
+    });
+
+    final text = await tts.listenOnce(
+      onPartialResult: (partial) {
+        setState(() => _partialText = partial);
+      },
+    );
+
+    setState(() {
+      _isListening = false;
+      _partialText = '';
+    });
+
+    if (text != null && text.isNotEmpty) {
+      // Process through NLP fallback
+      final tags = await ai.extractSymptoms(text);
+      if (tags.isNotEmpty) {
+        ref.read(symptomCheckerProvider.notifier).addSymptoms(tags);
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Identified ${tags.length} symptom(s) from voice!')),
+          );
+        }
+      } else {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Could not understand any symptoms from voice.')),
+          );
+        }
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(symptomCheckerProvider);
@@ -42,6 +87,27 @@ class _SymptomCheckerScreenState extends ConsumerState<SymptomCheckerScreen> {
           : Column(
               children: [
                 _HeaderBanner(),
+                if (_isListening)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    color: AppColors.primaryLight.withValues(alpha: 0.1),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.mic_rounded, color: AppColors.primary),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            _partialText,
+                            style: const TextStyle(
+                              color: AppColors.primary,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 Expanded(
                   child: ListView(
                     padding: const EdgeInsets.all(16),
@@ -62,6 +128,15 @@ class _SymptomCheckerScreenState extends ConsumerState<SymptomCheckerScreen> {
                 ),
               ],
             ),
+      floatingActionButton: state.result == null
+          ? FloatingActionButton(
+              onPressed: _isListening ? null : _startVoiceInput,
+              backgroundColor: _isListening ? Colors.grey : AppColors.primary,
+              child: _isListening
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : const Icon(Icons.mic_rounded, color: Colors.white),
+            )
+          : null,
     );
   }
 }
@@ -71,7 +146,7 @@ class _HeaderBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppColors.primary.withOpacity(0.05),
+      color: AppColors.primary.withValues(alpha: 0.05),
       padding: const EdgeInsets.all(16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +158,7 @@ class _HeaderBanner extends StatelessWidget {
             child: Text(
               'Select all the symptoms you are currently experiencing to get immediate triage advice. This works entirely offline.',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.8),
                 fontSize: 13,
                 height: 1.4,
               ),
@@ -142,13 +217,13 @@ class _SymptomGroup extends StatelessWidget {
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                   fontSize: 13,
                 ),
-                backgroundColor: cs.surfaceVariant,
+                backgroundColor: cs.surfaceContainerHighest,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                   side: BorderSide(
                     color: isSelected
                         ? AppColors.primary
-                        : cs.outline.withOpacity(0.2),
+                        : cs.outline.withValues(alpha: 0.2),
                   ),
                 ),
               );
@@ -179,7 +254,7 @@ class _BottomAction extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             offset: const Offset(0, -4),
             blurRadius: 8,
           ),
@@ -194,7 +269,7 @@ class _BottomAction extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               foregroundColor: Colors.white,
-              disabledBackgroundColor: AppColors.primary.withOpacity(0.3),
+              disabledBackgroundColor: AppColors.primary.withValues(alpha: 0.3),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -222,7 +297,7 @@ class _BottomAction extends StatelessWidget {
   }
 }
 
-// ── Triage Result View ────────────────────────────────────────────────────────
+// â”€â”€ Triage Result View â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _TriageResultView extends ConsumerWidget {
   final TriageResult result;
@@ -313,9 +388,9 @@ class _TriageResultView extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: _color.withOpacity(0.08),
+              color: _color.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: _color.withOpacity(0.3)),
+              border: Border.all(color: _color.withValues(alpha: 0.3)),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,7 +426,7 @@ class _TriageResultView extends ConsumerWidget {
           Text(
             result.reasoning,
             style: TextStyle(
-              color: cs.onSurface.withOpacity(0.8),
+              color: cs.onSurface.withValues(alpha: 0.8),
               fontSize: 15,
               height: 1.5,
             ),
@@ -364,7 +439,7 @@ class _TriageResultView extends ConsumerWidget {
             'Based on your symptoms:',
             style: TextStyle(
               fontSize: 14,
-              color: cs.onSurface.withOpacity(0.5),
+              color: cs.onSurface.withValues(alpha: 0.5),
             ),
           ),
           const SizedBox(height: 8),
@@ -375,14 +450,14 @@ class _TriageResultView extends ConsumerWidget {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: cs.surfaceVariant,
+                  color: cs.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   Symptoms.labels[tag] ?? tag,
                   style: TextStyle(
                     fontSize: 12,
-                    color: cs.onSurface.withOpacity(0.8),
+                    color: cs.onSurface.withValues(alpha: 0.8),
                   ),
                 ),
               );

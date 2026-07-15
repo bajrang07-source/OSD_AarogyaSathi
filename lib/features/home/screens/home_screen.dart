@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constants/app_routes.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/app_theme.dart';
 
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: cs.surface,
       body: CustomScrollView(
         slivers: [
-          // ── Hero AppBar ────────────────────────────────────────────────
+          // â”€â”€ Hero AppBar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           SliverAppBar(
             expandedHeight: 200,
             pinned: true,
@@ -47,21 +48,21 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ── Offline badge ───────────────────────────────────────
+                  // â”€â”€ Offline badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                   _OfflineBadge(),
                   const SizedBox(height: 20),
 
-                  // ── SOS Card ────────────────────────────────────────────
+                  // â”€â”€ SOS Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                   _SosCard(),
                   const SizedBox(height: 28),
 
-                  // ── Quick Actions ───────────────────────────────────────
+                  // â”€â”€ Quick Actions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                   Text('Quick Actions', style: tt.titleMedium),
                   const SizedBox(height: 12),
                   _QuickActionsGrid(),
                   const SizedBox(height: 28),
 
-                  // ── Health Tip ──────────────────────────────────────────
+                  // â”€â”€ Health Tip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                   _HealthTipCard(),
                   const SizedBox(height: 24),
                 ],
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// ── Hero header ───────────────────────────────────────────────────────────────
+// â”€â”€ Hero header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class _HeroHeader extends StatelessWidget {
   final bool isDark;
   const _HeroHeader({required this.isDark});
@@ -106,7 +107,7 @@ class _HeroHeader extends StatelessWidget {
           Text(
             AppStrings.appTagline,
             style: TextStyle(
-              color: Colors.white.withOpacity(0.85),
+              color: Colors.white.withValues(alpha: 0.85),
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
@@ -117,16 +118,16 @@ class _HeroHeader extends StatelessWidget {
   }
 }
 
-// ── Offline badge ─────────────────────────────────────────────────────────────
+// â”€â”€ Offline badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class _OfflineBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: AppColors.severityLow.withOpacity(0.12),
+        color: AppColors.severityLow.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.severityLow.withOpacity(0.4)),
+        border: Border.all(color: AppColors.severityLow.withValues(alpha: 0.4)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -141,7 +142,7 @@ class _OfflineBadge extends StatelessWidget {
           ),
           const SizedBox(width: 6),
           Text(
-            'Works Offline — All data stored locally',
+            'Works Offline â€” All data stored locally',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,
@@ -154,7 +155,7 @@ class _OfflineBadge extends StatelessWidget {
   }
 }
 
-// ── SOS emergency card ────────────────────────────────────────────────────────
+// â”€â”€ SOS emergency card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class _SosCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -164,7 +165,7 @@ class _SosCard extends StatelessWidget {
         // Phase 5/6: Will trigger emergency flow
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('🚨 Emergency features coming in Phase 5 & 6'),
+            content: Text('ðŸš¨ Emergency features coming in Phase 5 & 6'),
             backgroundColor: AppColors.severityCritical,
           ),
         );
@@ -181,7 +182,7 @@ class _SosCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: AppColors.severityCritical.withOpacity(0.4),
+              color: AppColors.severityCritical.withValues(alpha: 0.4),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -192,7 +193,7 @@ class _SosCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.emergency_rounded, color: Colors.white, size: 32),
@@ -215,7 +216,7 @@ class _SosCard extends StatelessWidget {
                   Text(
                     AppStrings.homeSosSubLabel,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.85),
+                      color: Colors.white.withValues(alpha: 0.85),
                       fontSize: 13,
                     ),
                   ),
@@ -230,7 +231,7 @@ class _SosCard extends StatelessWidget {
   }
 }
 
-// ── Quick actions grid ────────────────────────────────────────────────────────
+// â”€â”€ Quick actions grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class _QuickActionsGrid extends StatelessWidget {
   static const List<_QuickAction> _actions = [
     _QuickAction(
@@ -238,35 +239,35 @@ class _QuickActionsGrid extends StatelessWidget {
       icon: Icons.health_and_safety_rounded,
       color: Color(0xFF00897B),
       bgColor: Color(0xFFE0F2F1),
-      route: '/symptomChecker',
+      route: AppRoutes.symptomChecker,
     ),
     _QuickAction(
       label: AppStrings.qaFirstAid,
       icon: Icons.local_hospital_rounded,
       color: Color(0xFFD32F2F),
       bgColor: Color(0xFFFFEBEE),
-      route: '/firstAid',
+      route: AppRoutes.firstAid,
     ),
     _QuickAction(
       label: AppStrings.qaFindHospital,
       icon: Icons.location_on_rounded,
       color: Color(0xFF1565C0),
       bgColor: Color(0xFFE3F2FD),
-      route: '/hospitals',
+      route: AppRoutes.hospitals,
     ),
     _QuickAction(
       label: AppStrings.qaTransport,
       icon: Icons.local_taxi_rounded,
       color: Color(0xFFE65100),
       bgColor: Color(0xFFFFF3E0),
-      route: '/transport', // Phase 5
+      route: AppRoutes.transport,
     ),
     _QuickAction(
       label: AppStrings.qaHealthCard,
       icon: Icons.badge_rounded,
       color: Color(0xFF6A1B9A),
       bgColor: Color(0xFFF3E5F5),
-      route: '/healthCard',
+      route: AppRoutes.healthCard,
     ),
     _QuickAction(
       label: AppStrings.qaScanPrescription,
@@ -319,10 +320,10 @@ class _QuickActionTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       child: Ink(
         decoration: BoxDecoration(
-          color: isDark ? action.color.withOpacity(0.15) : action.bgColor,
+          color: isDark ? action.color.withValues(alpha: 0.15) : action.bgColor,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: action.color.withOpacity(0.2),
+            color: action.color.withValues(alpha: 0.2),
             width: 1,
           ),
         ),
@@ -332,7 +333,7 @@ class _QuickActionTile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: action.color.withOpacity(0.12),
+                color: action.color.withValues(alpha: 0.12),
                 shape: BoxShape.circle,
               ),
               child: Icon(action.icon, color: action.color, size: 28),
@@ -376,7 +377,7 @@ class _QuickAction {
   });
 }
 
-// ── Health tip card ───────────────────────────────────────────────────────────
+// â”€â”€ Health tip card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class _HealthTipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -384,9 +385,9 @@ class _HealthTipCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.primaryLight.withOpacity(0.08),
+        color: AppColors.primaryLight.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.primary.withOpacity(0.2)),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -405,7 +406,7 @@ class _HealthTipCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   'Drink at least 8 glasses of water daily. Dehydration is a common cause of fatigue and headaches.',
-                  style: TextStyle(fontSize: 12, color: cs.onSurface.withOpacity(0.7), height: 1.4),
+                  style: TextStyle(fontSize: 12, color: cs.onSurface.withValues(alpha: 0.7), height: 1.4),
                 ),
               ],
             ),

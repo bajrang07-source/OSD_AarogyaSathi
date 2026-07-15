@@ -53,6 +53,16 @@ class SymptomCheckerNotifier extends StateNotifier<SymptomCheckerState> {
     );
   }
 
+  /// Add multiple symptoms at once (used by NLP Voice extraction).
+  void addSymptoms(List<String> tags) {
+    final current = Set<String>.from(state.selectedSymptoms);
+    current.addAll(tags);
+    state = state.copyWith(
+      selectedSymptoms: current.toList(),
+      clearResult: true,
+    );
+  }
+
   /// Clear all selected symptoms and result.
   void reset() {
     state = const SymptomCheckerState();

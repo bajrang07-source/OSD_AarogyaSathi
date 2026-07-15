@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/app_theme.dart';
@@ -33,7 +33,7 @@ class _HealthCardScreenState extends State<HealthCardScreen> {
   }
 }
 
-// ── Locked state ──────────────────────────────────────────────────────────────
+// â”€â”€ Locked state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class _LockedView extends StatelessWidget {
   final VoidCallback onUnlock;
   const _LockedView({required this.onUnlock});
@@ -58,7 +58,7 @@ class _LockedView extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF6A1B9A).withOpacity(0.3),
+                    color: const Color(0xFF6A1B9A).withValues(alpha: 0.3),
                     blurRadius: 24,
                     offset: const Offset(0, 8),
                   ),
@@ -77,16 +77,16 @@ class _LockedView extends StatelessWidget {
               AppStrings.healthCardLocked,
               style: TextStyle(
                 fontSize: 14,
-                color: cs.onSurface.withOpacity(0.6),
+                color: cs.onSurface.withValues(alpha: 0.6),
               ),
             ),
             const SizedBox(height: 12),
             Text(
-              'Your encrypted medical profile — blood group, allergies,\nconditions, medications & emergency contacts',
+              'Your encrypted medical profile â€” blood group, allergies,\nconditions, medications & emergency contacts',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 13,
-                color: cs.onSurface.withOpacity(0.5),
+                color: cs.onSurface.withValues(alpha: 0.5),
                 height: 1.5,
               ),
             ),
@@ -110,10 +110,10 @@ class _LockedView extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             Text(
-              '🔒 PIN & biometric encryption — Phase 11',
+              'ðŸ”’ PIN & biometric encryption â€” Phase 11',
               style: TextStyle(
                 fontSize: 12,
-                color: cs.onSurface.withOpacity(0.4),
+                color: cs.onSurface.withValues(alpha: 0.4),
               ),
             ),
           ],
@@ -123,7 +123,7 @@ class _LockedView extends StatelessWidget {
   }
 }
 
-// ── Unlocked card view ────────────────────────────────────────────────────────
+// â”€â”€ Unlocked card view â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class _UnlockedView extends StatelessWidget {
   static const _mockData = _HealthCardData(
     name: 'Ramesh Patil',
@@ -144,11 +144,11 @@ class _UnlockedView extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          // ── ID Card ─────────────────────────────────────────────────────
+          // â”€â”€ ID Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           _IdCard(data: _mockData),
           const SizedBox(height: 20),
 
-          // ── Sections ─────────────────────────────────────────────────
+          // â”€â”€ Sections â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           _SectionCard(
             title: 'Allergies',
             icon: Icons.warning_amber_rounded,
@@ -184,7 +184,7 @@ class _UnlockedView extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // ── QR Share ─────────────────────────────────────────────────
+          // â”€â”€ QR Share â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           _QrShareCard(),
           const SizedBox(height: 20),
         ],
@@ -211,7 +211,7 @@ class _IdCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF6A1B9A).withOpacity(0.3),
+            color: const Color(0xFF6A1B9A).withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -234,10 +234,10 @@ class _IdCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: const Text('🔓 Unlocked',
+                child: const Text('ðŸ”“ Unlocked',
                     style: TextStyle(color: Colors.white, fontSize: 11)),
               ),
             ],
@@ -247,7 +247,7 @@ class _IdCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 28,
-                backgroundColor: Colors.white.withOpacity(0.2),
+                backgroundColor: Colors.white.withValues(alpha: 0.2),
                 child: const Icon(Icons.person_rounded,
                     color: Colors.white, size: 32),
               ),
@@ -311,10 +311,10 @@ class _SectionCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: cs.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: cs.outline.withOpacity(0.2)),
+        border: Border.all(color: cs.outline.withValues(alpha: 0.2)),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 8,
               offset: const Offset(0, 2)),
         ],
@@ -353,9 +353,9 @@ class _PillChip extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 6),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Text(label,
           style: TextStyle(
@@ -383,7 +383,7 @@ class _MedRow extends StatelessWidget {
           Expanded(
               child: Text(med,
                   style: TextStyle(
-                      fontSize: 13, color: cs.onSurface.withOpacity(0.8)))),
+                      fontSize: 13, color: cs.onSurface.withValues(alpha: 0.8)))),
         ],
       ),
     );
@@ -416,7 +416,7 @@ class _ContactRow extends StatelessWidget {
                         color: Theme.of(context)
                             .colorScheme
                             .onSurface
-                            .withOpacity(0.6))),
+                            .withValues(alpha: 0.6))),
               ],
             ),
           ),
@@ -443,14 +443,14 @@ class _QrShareCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: cs.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: cs.outline.withOpacity(0.2)),
+        border: Border.all(color: cs.outline.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFF6A1B9A).withOpacity(0.1),
+              color: const Color(0xFF6A1B9A).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Icon(Icons.qr_code_2_rounded,
@@ -469,14 +469,14 @@ class _QrShareCard extends StatelessWidget {
                   'Generate a QR code to quickly share your health summary with a healthcare provider',
                   style: TextStyle(
                       fontSize: 12,
-                      color: cs.onSurface.withOpacity(0.6),
+                      color: cs.onSurface.withValues(alpha: 0.6),
                       height: 1.4),
                 ),
                 const SizedBox(height: 10),
-                Text('QR generation — Phase 11',
+                Text('QR generation â€” Phase 11',
                     style: TextStyle(
                         fontSize: 11,
-                        color: cs.onSurface.withOpacity(0.35))),
+                        color: cs.onSurface.withValues(alpha: 0.35))),
               ],
             ),
           ),
@@ -486,7 +486,7 @@ class _QrShareCard extends StatelessWidget {
   }
 }
 
-// ── Data classes ──────────────────────────────────────────────────────────────
+// â”€â”€ Data classes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class _HealthCardData {
   final String name, age, bloodGroup;
   final List<String> allergies, conditions, medications;

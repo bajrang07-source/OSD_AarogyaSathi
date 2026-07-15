@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_theme.dart';
@@ -60,10 +60,10 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
       ),
       body: Column(
         children: [
-          // ── Location / filter banner ─────────────────────────────────
+          // â”€â”€ Location / filter banner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           _BannerRow(showEmergencyOnly: state.showEmergencyOnly),
 
-          // ── Search bar ───────────────────────────────────────────────
+          // â”€â”€ Search bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
             child: TextField(
@@ -71,7 +71,7 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
               onChanged: (q) =>
                   ref.read(hospitalsProvider.notifier).setQuery(q),
               decoration: InputDecoration(
-                hintText: 'Search hospitals or services…',
+                hintText: 'Search hospitals or servicesâ€¦',
                 prefixIcon: const Icon(Icons.search_rounded),
                 suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
@@ -94,7 +94,7 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
             ),
           ),
 
-          // ── Count line ───────────────────────────────────────────────
+          // â”€â”€ Count line â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           if (!state.isLoading)
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
@@ -107,7 +107,7 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
                       color: Theme.of(context)
                           .colorScheme
                           .onSurface
-                          .withOpacity(0.5),
+                          .withValues(alpha: 0.5),
                     ),
                   ),
                   const Spacer(),
@@ -116,11 +116,11 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
-                        color: AppColors.severityCritical.withOpacity(0.1),
+                        color: AppColors.severityCritical.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: const Text(
-                        '🚑 Emergency Only',
+                        'ðŸš‘ Emergency Only',
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
@@ -132,7 +132,7 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
               ),
             ),
 
-          // ── Hospital list ────────────────────────────────────────────
+          // â”€â”€ Hospital list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           Expanded(
             child: state.isLoading
                 ? const Center(
@@ -159,7 +159,7 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
   }
 }
 
-// ── Banner row ────────────────────────────────────────────────────────────────
+// â”€â”€ Banner row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _BannerRow extends StatelessWidget {
   final bool showEmergencyOnly;
@@ -174,9 +174,9 @@ class _BannerRow extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.15),
+          color: Colors.white.withValues(alpha: 0.15),
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.white.withOpacity(0.25)),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
         ),
         child: Row(
           children: [
@@ -184,7 +184,7 @@ class _BannerRow extends StatelessWidget {
             const SizedBox(width: 8),
             const Expanded(
               child: Text(
-                'Palghar District, Maharashtra  •  GPS ranking in Phase 5',
+                'Palghar District, Maharashtra  â€¢  GPS ranking in Phase 5',
                 style: TextStyle(color: Colors.white, fontSize: 12),
               ),
             ),
@@ -199,7 +199,7 @@ class _BannerRow extends StatelessWidget {
   }
 }
 
-// ── Empty state ───────────────────────────────────────────────────────────────
+// â”€â”€ Empty state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _EmptyState extends StatelessWidget {
   final String query;
@@ -215,7 +215,7 @@ class _EmptyState extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.local_hospital_outlined,
-              size: 48, color: cs.onSurface.withOpacity(0.3)),
+              size: 48, color: cs.onSurface.withValues(alpha: 0.3)),
           const SizedBox(height: 12),
           Text(
             query.isNotEmpty
@@ -224,7 +224,7 @@ class _EmptyState extends StatelessWidget {
                     ? 'No emergency-capable facilities found'
                     : 'No hospitals in database',
             textAlign: TextAlign.center,
-            style: TextStyle(color: cs.onSurface.withOpacity(0.5)),
+            style: TextStyle(color: cs.onSurface.withValues(alpha: 0.5)),
           ),
         ],
       ),
@@ -232,7 +232,7 @@ class _EmptyState extends StatelessWidget {
   }
 }
 
-// ── Hospital card ─────────────────────────────────────────────────────────────
+// â”€â”€ Hospital card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _HospitalCard extends StatelessWidget {
   final Hospital hospital;
@@ -250,7 +250,7 @@ class _HospitalCard extends StatelessWidget {
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: cs.outline.withOpacity(0.15)),
+        side: BorderSide(color: cs.outline.withValues(alpha: 0.15)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(14),
@@ -264,7 +264,7 @@ class _HospitalCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: accentColor.withOpacity(0.1),
+                    color: accentColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
@@ -295,7 +295,7 @@ class _HospitalCard extends StatelessWidget {
                               hospital.type,
                               style: TextStyle(
                                 fontSize: 12,
-                                color: cs.onSurface.withOpacity(0.55),
+                                color: cs.onSurface.withValues(alpha: 0.55),
                               ),
                             ),
                           ),
@@ -308,7 +308,7 @@ class _HospitalCard extends StatelessWidget {
                           hospital.district!,
                           style: TextStyle(
                             fontSize: 11,
-                            color: cs.onSurface.withOpacity(0.4),
+                            color: cs.onSurface.withValues(alpha: 0.4),
                           ),
                         ),
                     ],
@@ -441,7 +441,7 @@ class _ServiceChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: AppColors.primary.withOpacity(0.07),
+        color: AppColors.primary.withValues(alpha: 0.07),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(

@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// ArogyaSathi color palette — healthcare-appropriate with good
+/// ArogyaSathi color palette â€” healthcare-appropriate with good
 /// accessibility contrast ratios (WCAG AA+).
 class AppColors {
-  // Primary — Deep teal (trust, healthcare)
+  // Primary â€” Deep teal (trust, healthcare)
   static const Color primary = Color(0xFF00796B);
   static const Color primaryLight = Color(0xFF48A999);
   static const Color primaryDark = Color(0xFF004C40);
   static const Color onPrimary = Color(0xFFFFFFFF);
 
-  // Secondary — Warm amber (urgency / action)
+  // Secondary â€” Warm amber (urgency / action)
   static const Color secondary = Color(0xFFFF8F00);
   static const Color secondaryLight = Color(0xFFFFBF45);
   static const Color secondaryDark = Color(0xFFC56000);
@@ -48,7 +48,7 @@ class AppColors {
 class AppTheme {
   AppTheme._();
 
-  // ─── Light Theme ──────────────────────────────────────────────────────────
+  // â”€â”€â”€ Light Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static ThemeData get lightTheme {
     final base = ThemeData(
       useMaterial3: true,
@@ -72,7 +72,7 @@ class AppTheme {
         surfaceContainerHighest: AppColors.surfaceVariantLight,
         onSurfaceVariant: AppColors.textSecondaryLight,
         outline: AppColors.dividerLight,
-        outlineVariant: AppColors.dividerLight.withOpacity(0.5),
+        outlineVariant: AppColors.dividerLight.withValues(alpha: 0.5),
         scrim: Colors.black54,
         inverseSurface: AppColors.surfaceDark,
         onInverseSurface: AppColors.textPrimaryDark,
@@ -99,7 +99,7 @@ class AppTheme {
     );
   }
 
-  // ─── Dark Theme ───────────────────────────────────────────────────────────
+  // â”€â”€â”€ Dark Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static ThemeData get darkTheme {
     final base = ThemeData(
       useMaterial3: true,
@@ -123,7 +123,7 @@ class AppTheme {
         surfaceContainerHighest: AppColors.surfaceVariantDark,
         onSurfaceVariant: AppColors.textSecondaryDark,
         outline: AppColors.dividerDark,
-        outlineVariant: AppColors.dividerDark.withOpacity(0.5),
+        outlineVariant: AppColors.dividerDark.withValues(alpha: 0.5),
         scrim: Colors.black87,
         inverseSurface: AppColors.surfaceLight,
         onInverseSurface: AppColors.textPrimaryLight,
@@ -150,7 +150,7 @@ class AppTheme {
     );
   }
 
-  // ─── Text Theme ───────────────────────────────────────────────────────────
+  // â”€â”€â”€ Text Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static TextTheme _buildTextTheme(Color primary, Color secondary) {
     // Noto Sans supports Latin + Devanagari (Hindi/Marathi)
     return GoogleFonts.notoSansTextTheme(
@@ -174,7 +174,7 @@ class AppTheme {
     );
   }
 
-  // ─── AppBar ───────────────────────────────────────────────────────────────
+  // â”€â”€â”€ AppBar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static AppBarTheme _buildAppBarTheme(Brightness brightness) {
     final isDark = brightness == Brightness.dark;
     return AppBarTheme(
@@ -192,7 +192,7 @@ class AppTheme {
     );
   }
 
-  // ─── Bottom Nav ───────────────────────────────────────────────────────────
+  // â”€â”€â”€ Bottom Nav â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static BottomNavigationBarThemeData _buildBottomNavTheme(Brightness brightness) {
     final isDark = brightness == Brightness.dark;
     return BottomNavigationBarThemeData(
@@ -208,7 +208,7 @@ class AppTheme {
     final isDark = brightness == Brightness.dark;
     return NavigationBarThemeData(
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-      indicatorColor: AppColors.primary.withOpacity(0.15),
+      indicatorColor: AppColors.primary.withValues(alpha: 0.15),
       iconTheme: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
           return const IconThemeData(color: AppColors.primary, size: 26);
@@ -235,18 +235,18 @@ class AppTheme {
     );
   }
 
-  // ─── Card ─────────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static CardThemeData _buildCardTheme(Color surface) {
     return CardThemeData(
       color: surface,
       elevation: 2,
-      shadowColor: Colors.black.withOpacity(0.08),
+      shadowColor: Colors.black.withValues(alpha: 0.08),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       clipBehavior: Clip.antiAlias,
     );
   }
 
-  // ─── Elevated Button ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Elevated Button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static ElevatedButtonThemeData _buildElevatedButtonTheme() {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -260,7 +260,7 @@ class AppTheme {
     );
   }
 
-  // ─── Outlined Button ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Outlined Button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static OutlinedButtonThemeData _buildOutlinedButtonTheme() {
     return OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
@@ -273,7 +273,7 @@ class AppTheme {
     );
   }
 
-  // ─── Input Decoration ─────────────────────────────────────────────────────
+  // â”€â”€â”€ Input Decoration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static InputDecorationTheme _buildInputDecorationTheme(Brightness brightness) {
     final isDark = brightness == Brightness.dark;
     return InputDecorationTheme(
@@ -302,19 +302,19 @@ class AppTheme {
     );
   }
 
-  // ─── Chip ─────────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static ChipThemeData _buildChipTheme(Brightness brightness) {
     final isDark = brightness == Brightness.dark;
     return ChipThemeData(
       backgroundColor: isDark ? AppColors.surfaceVariantDark : AppColors.surfaceVariantLight,
-      selectedColor: AppColors.primary.withOpacity(0.2),
+      selectedColor: AppColors.primary.withValues(alpha: 0.2),
       labelStyle: GoogleFonts.notoSans(fontSize: 12, fontWeight: FontWeight.w500),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     );
   }
 
-  // ─── FAB ──────────────────────────────────────────────────────────────────
+  // â”€â”€â”€ FAB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   static FloatingActionButtonThemeData _buildFabTheme() {
     return const FloatingActionButtonThemeData(
       backgroundColor: AppColors.secondary,

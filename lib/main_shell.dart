@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'core/constants/app_strings.dart';
-import 'core/theme/app_theme.dart';
 
 /// The persistent bottom-navigation shell that wraps all 5 tab branches.
 /// Uses Material 3 NavigationBar with smooth indicator animations.
@@ -30,6 +29,11 @@ class MainShell extends StatelessWidget {
       label: AppStrings.navHospitals,
       icon: Icons.location_on_outlined,
       activeIcon: Icons.location_on_rounded,
+    ),
+    _NavItem(
+      label: 'Transport',
+      icon: Icons.directions_car_outlined,
+      activeIcon: Icons.directions_car_rounded,
     ),
     _NavItem(
       label: AppStrings.navHealthCard,
@@ -78,7 +82,7 @@ class _BottomNav extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 16,
             offset: const Offset(0, -4),
           ),

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_theme.dart';
@@ -70,14 +70,14 @@ class _FirstAidScreenState extends ConsumerState<FirstAidScreen>
       ),
       body: Column(
         children: [
-          // ── Search bar ───────────────────────────────────────────────────
+          // â”€â”€ Search bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           _SearchBar(
             controller: _searchController,
             onChanged: (q) =>
                 ref.read(firstAidProvider.notifier).setQuery(q),
           ),
 
-          // ── Tab views ────────────────────────────────────────────────────
+          // â”€â”€ Tab views â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           Expanded(
             child: TabBarView(
               controller: _tabController,
@@ -95,7 +95,7 @@ class _FirstAidScreenState extends ConsumerState<FirstAidScreen>
                   topics: state.favourites,
                   isLoading: false,
                   query: '',
-                  emptyMessage: 'No saved topics yet.\nTap ♥ on any topic to save it.',
+                  emptyMessage: 'No saved topics yet.\nTap â™¥ on any topic to save it.',
                   favouriteIds:
                       state.favourites.map((f) => f.id ?? 0).toSet(),
                   onFavourite: (id) =>
@@ -110,7 +110,7 @@ class _FirstAidScreenState extends ConsumerState<FirstAidScreen>
   }
 }
 
-// ── Search bar ────────────────────────────────────────────────────────────────
+// â”€â”€ Search bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _SearchBar extends StatelessWidget {
   final TextEditingController controller;
@@ -129,8 +129,8 @@ class _SearchBar extends StatelessWidget {
         style: const TextStyle(color: Colors.white),
         cursorColor: Colors.white,
         decoration: InputDecoration(
-          hintText: 'Search conditions (e.g., snake bite)…',
-          hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
+          hintText: 'Search conditions (e.g., snake bite)â€¦',
+          hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.6)),
           prefixIcon:
               const Icon(Icons.search_rounded, color: Colors.white70),
           suffixIcon: controller.text.isNotEmpty
@@ -144,7 +144,7 @@ class _SearchBar extends StatelessWidget {
                 )
               : null,
           filled: true,
-          fillColor: Colors.white.withOpacity(0.15),
+          fillColor: Colors.white.withValues(alpha: 0.15),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
@@ -152,7 +152,7 @@ class _SearchBar extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide:
-                BorderSide(color: Colors.white.withOpacity(0.3)),
+                BorderSide(color: Colors.white.withValues(alpha: 0.3)),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
@@ -164,7 +164,7 @@ class _SearchBar extends StatelessWidget {
   }
 }
 
-// ── Topic list ────────────────────────────────────────────────────────────────
+// â”€â”€ Topic list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _TopicList extends StatelessWidget {
   final List<FirstAidTopic> topics;
@@ -199,13 +199,13 @@ class _TopicList extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(Icons.search_off_rounded,
-                size: 48, color: cs.onSurface.withOpacity(0.3)),
+                size: 48, color: cs.onSurface.withValues(alpha: 0.3)),
             const SizedBox(height: 12),
             Text(
               emptyMessage,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: cs.onSurface.withOpacity(0.5), height: 1.5),
+                  color: cs.onSurface.withValues(alpha: 0.5), height: 1.5),
             ),
           ],
         ),
@@ -243,7 +243,7 @@ class _TopicList extends StatelessWidget {
   }
 }
 
-// ── Topic card ────────────────────────────────────────────────────────────────
+// â”€â”€ Topic card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _TopicCard extends StatelessWidget {
   final FirstAidTopic topic;
@@ -296,10 +296,10 @@ class _TopicCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: cs.surface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: cs.outline.withOpacity(0.15)),
+          border: Border.all(color: cs.outline.withValues(alpha: 0.15)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -312,7 +312,7 @@ class _TopicCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(_severityIcon, color: color, size: 26),
@@ -339,10 +339,10 @@ class _TopicCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${topic.steps.length} steps  •  ${topic.warnings.length} warnings',
+                      '${topic.steps.length} steps  â€¢  ${topic.warnings.length} warnings',
                       style: TextStyle(
                         fontSize: 12,
-                        color: cs.onSurface.withOpacity(0.55),
+                        color: cs.onSurface.withValues(alpha: 0.55),
                       ),
                     ),
                     if (topic.searchKeywords != null) ...[
@@ -355,7 +355,7 @@ class _TopicCard extends StatelessWidget {
                             .join('  '),
                         style: TextStyle(
                           fontSize: 11,
-                          color: cs.onSurface.withOpacity(0.38),
+                          color: cs.onSurface.withValues(alpha: 0.38),
                         ),
                       ),
                     ],
@@ -370,7 +370,7 @@ class _TopicCard extends StatelessWidget {
                       : Icons.favorite_outline_rounded,
                   color: isFavourite
                       ? AppColors.severityCritical
-                      : cs.onSurface.withOpacity(0.3),
+                      : cs.onSurface.withValues(alpha: 0.3),
                   size: 22,
                 ),
                 onPressed: onFavourite,
@@ -384,7 +384,7 @@ class _TopicCard extends StatelessWidget {
   }
 }
 
-// ── Detail screen ─────────────────────────────────────────────────────────────
+// â”€â”€ Detail screen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class FirstAidDetailScreen extends StatefulWidget {
   final FirstAidTopic topic;
@@ -456,7 +456,7 @@ class _FirstAidDetailScreenState extends State<FirstAidDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ── Severity badge ──────────────────────────────────────────
+            // â”€â”€ Severity badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             Row(
               children: [
                 Container(
@@ -479,7 +479,7 @@ class _FirstAidDetailScreenState extends State<FirstAidDetailScreen> {
                 Text(
                   '${topic.steps.length} steps',
                   style: TextStyle(
-                    color: cs.onSurface.withOpacity(0.5),
+                    color: cs.onSurface.withValues(alpha: 0.5),
                     fontSize: 13,
                   ),
                 ),
@@ -488,14 +488,14 @@ class _FirstAidDetailScreenState extends State<FirstAidDetailScreen> {
 
             const SizedBox(height: 20),
 
-            // ── Disclaimer ──────────────────────────────────────────────
+            // â”€â”€ Disclaimer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppColors.severityModerate.withOpacity(0.1),
+                color: AppColors.severityModerate.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                    color: AppColors.severityModerate.withOpacity(0.3)),
+                    color: AppColors.severityModerate.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
@@ -504,7 +504,7 @@ class _FirstAidDetailScreenState extends State<FirstAidDetailScreen> {
                   const SizedBox(width: 8),
                   const Expanded(
                     child: Text(
-                      'This is first-aid guidance only — not a medical diagnosis. Always consult a doctor.',
+                      'This is first-aid guidance only â€” not a medical diagnosis. Always consult a doctor.',
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.severityModerate,
@@ -517,7 +517,7 @@ class _FirstAidDetailScreenState extends State<FirstAidDetailScreen> {
 
             const SizedBox(height: 24),
 
-            // ── Steps ───────────────────────────────────────────────────
+            // â”€â”€ Steps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             _SectionHeader(
               icon: Icons.format_list_numbered_rounded,
               title: 'Step-by-Step Instructions',
@@ -532,7 +532,7 @@ class _FirstAidDetailScreenState extends State<FirstAidDetailScreen> {
             if (topic.warnings.isNotEmpty) ...[
               const SizedBox(height: 24),
 
-              // ── Warnings ───────────────────────────────────────────────
+              // â”€â”€ Warnings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
               _SectionHeader(
                 icon: Icons.warning_amber_rounded,
                 title: 'Important Warnings',
@@ -544,7 +544,7 @@ class _FirstAidDetailScreenState extends State<FirstAidDetailScreen> {
 
             const SizedBox(height: 24),
 
-            // ── Emergency reminder ───────────────────────────────────────
+            // â”€â”€ Emergency reminder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (topic.severity == 'Critical' ||
                 topic.severity == 'High')
               _EmergencyCallCard(),
@@ -601,10 +601,10 @@ class _StepCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: cs.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: cs.outline.withOpacity(0.15)),
+        border: Border.all(color: cs.outline.withValues(alpha: 0.15)),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.03),
+              color: Colors.black.withValues(alpha: 0.03),
               blurRadius: 6,
               offset: const Offset(0, 2)),
         ],
@@ -636,7 +636,7 @@ class _StepCard extends StatelessWidget {
               step,
               style: TextStyle(
                 fontSize: 14,
-                color: cs.onSurface.withOpacity(0.85),
+                color: cs.onSurface.withValues(alpha: 0.85),
                 height: 1.5,
               ),
             ),
@@ -658,10 +658,10 @@ class _WarningCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: AppColors.severityHigh.withOpacity(0.08),
+        color: AppColors.severityHigh.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-            color: AppColors.severityHigh.withOpacity(0.3)),
+            color: AppColors.severityHigh.withValues(alpha: 0.3)),
       ),
       child: Text(
         warning,
@@ -686,7 +686,7 @@ class _EmergencyCallCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: AppColors.severityCritical.withOpacity(0.3),
+            color: AppColors.severityCritical.withValues(alpha: 0.3),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -758,7 +758,7 @@ class _EmergencyCallCard extends StatelessWidget {
   }
 }
 
-// ── Severity badge ────────────────────────────────────────────────────────────
+// â”€â”€ Severity badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _SeverityBadge extends StatelessWidget {
   final String label;
@@ -771,7 +771,7 @@ class _SeverityBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.12),
+        color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(

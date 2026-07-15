@@ -1,6 +1,6 @@
 import '../../data/models/triage_result_model.dart';
 
-// ── Symptom constants ─────────────────────────────────────────────────────────
+// â”€â”€ Symptom constants â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // These are the canonical symptom tags the rule engine understands.
 // Phase 4 NLP maps free-text to these same tags.
 
@@ -22,7 +22,7 @@ class Symptoms {
   static const String seizure = 'seizure';
   static const String confusionDisorientation = 'confusion_disorientation';
   static const String severeHeadache = 'severe_headache';
-  static const String weakness_numbness = 'weakness_numbness';
+  static const String weaknessNumbness = 'weakness_numbness';
   static const String facialDropping = 'facial_drooping';
   static const String speechDifficulty = 'speech_difficulty';
   static const String dizziness = 'dizziness';
@@ -43,8 +43,8 @@ class Symptoms {
   static const String eyeInjury = 'eye_injury';
 
   // Fever / Infection
-  static const String highFever = 'high_fever';        // ≥103°F / 39.4°C
-  static const String moderateFever = 'moderate_fever'; // 100–103°F
+  static const String highFever = 'high_fever';        // â‰¥103Â°F / 39.4Â°C
+  static const String moderateFever = 'moderate_fever'; // 100â€“103Â°F
   static const String chills = 'chills';
   static const String rash = 'rash';
   static const String stiffNeck = 'stiff_neck';
@@ -77,7 +77,7 @@ class Symptoms {
     seizure: 'Seizure / Convulsions',
     confusionDisorientation: 'Confusion / Disorientation',
     severeHeadache: 'Severe Headache',
-    weakness_numbness: 'Weakness / Numbness',
+    weaknessNumbness: 'Weakness / Numbness',
     facialDropping: 'Facial Drooping (one side)',
     speechDifficulty: 'Difficulty Speaking',
     dizziness: 'Dizziness / Lightheadedness',
@@ -92,8 +92,8 @@ class Symptoms {
     fracture: 'Fracture / Broken Bone',
     headInjury: 'Head Injury',
     eyeInjury: 'Eye Injury',
-    highFever: 'High Fever (≥103°F / 39.4°C)',
-    moderateFever: 'Moderate Fever (100–103°F)',
+    highFever: 'High Fever (â‰¥103Â°F / 39.4Â°C)',
+    moderateFever: 'Moderate Fever (100â€“103Â°F)',
     chills: 'Chills / Shivering',
     rash: 'Skin Rash',
     stiffNeck: 'Stiff Neck',
@@ -115,7 +115,7 @@ class Symptoms {
   static const Map<String, List<String>> groups = {
     '🫀 Heart & Chest': [chestPain, palpitations, irregularHeartbeat, sweating],
     '🫁 Breathing': [breathingDifficulty, wheezing, rapidBreathing, choking],
-    '🧠 Neurological': [unconsciousness, seizure, confusionDisorientation, severeHeadache, weakness_numbness, facialDropping, speechDifficulty, dizziness],
+    '🧠 Neurological': [unconsciousness, seizure, confusionDisorientation, severeHeadache, weaknessNumbness, facialDropping, speechDifficulty, dizziness],
     '🤕 Trauma': [snakeBite, animalBite, severeBleed, burn, fracture, headInjury, eyeInjury],
     '🤒 Fever & Infection': [highFever, moderateFever, chills, rash, stiffNeck],
     '🤢 Stomach & GI': [severeAbdominalPain, vomiting, diarrhea, bloodInStool],
@@ -123,15 +123,15 @@ class Symptoms {
   };
 }
 
-// ── Rule engine ───────────────────────────────────────────────────────────────
+// â”€â”€ Rule engine â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /// Pure, stateless rule-based triage engine.
 ///
-/// Takes a set of symptom tags → returns a [TriageResult] with
+/// Takes a set of symptom tags â†’ returns a [TriageResult] with
 /// severity, reasoning (human-readable), and recommended action.
 ///
 /// Rules are intentionally conservative (err towards higher severity).
-/// The engine never produces freeform diagnosis text — only maps
+/// The engine never produces freeform diagnosis text â€” only maps
 /// symptom combinations to the four severity tiers.
 class TriageEngine {
   TriageEngine._();
@@ -141,7 +141,7 @@ class TriageEngine {
     final s = symptoms.toSet();
     final now = DateTime.now();
 
-    // ── CRITICAL rules (must be checked first) ──────────────────────────────
+    // â”€â”€ CRITICAL rules (must be checked first) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     if (s.contains(Symptoms.unconsciousness)) {
       return TriageResult(
@@ -175,7 +175,7 @@ class TriageEngine {
       return TriageResult(
         severity: TriageSeverity.critical,
         reasoning:
-            'Choking is immediately life-threatening — the airway is blocked.',
+            'Choking is immediately life-threatening â€” the airway is blocked.',
         immediateAction:
             'Give 5 back blows, then 5 abdominal thrusts (Heimlich). Call 112 now.',
         matchedSymptoms: symptoms,
@@ -189,7 +189,7 @@ class TriageEngine {
       return TriageResult(
         severity: TriageSeverity.critical,
         reasoning:
-            'A snake bite can inject life-threatening venom. Symptoms may be delayed — '
+            'A snake bite can inject life-threatening venom. Symptoms may be delayed â€” '
             'do not wait for them to appear before seeking help.',
         immediateAction:
             'Keep calm & still. Go to emergency hospital NOW for anti-venom.',
@@ -232,7 +232,7 @@ class TriageEngine {
     // Stroke triad: facial drooping + arm weakness + speech difficulty
     if ((s.contains(Symptoms.facialDropping) ||
             s.contains(Symptoms.speechDifficulty) ||
-            s.contains(Symptoms.weakness_numbness)) &&
+            s.contains(Symptoms.weaknessNumbness)) &&
         s.length >= 2) {
       return TriageResult(
         severity: TriageSeverity.critical,
@@ -251,7 +251,7 @@ class TriageEngine {
       return TriageResult(
         severity: TriageSeverity.critical,
         reasoning:
-            'Allergic reaction with breathing difficulty indicates anaphylaxis — '
+            'Allergic reaction with breathing difficulty indicates anaphylaxis â€” '
             'a severe, potentially fatal allergic response.',
         immediateAction: 'Give epinephrine if available. Call 108 immediately.',
         matchedSymptoms: symptoms,
@@ -292,7 +292,7 @@ class TriageEngine {
       );
     }
 
-    // ── HIGH rules ──────────────────────────────────────────────────────────
+    // â”€â”€ HIGH rules â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     if (s.contains(Symptoms.chestPain)) {
       return TriageResult(
@@ -323,7 +323,7 @@ class TriageEngine {
         severity: TriageSeverity.high,
         reasoning: 'Burns require prompt assessment to prevent infection and complications.',
         immediateAction:
-            'Cool under running water 10–20 min. Go to hospital for burns larger than victim\'s palm.',
+            'Cool under running water 10â€“20 min. Go to hospital for burns larger than victim\'s palm.',
         matchedSymptoms: symptoms,
         relatedFirstAidTopicId: 2,
         relatedFirstAidCondition: 'Burns',
@@ -348,7 +348,7 @@ class TriageEngine {
       return TriageResult(
         severity: TriageSeverity.critical,
         reasoning:
-            'High fever with stiff neck is a classic presentation of meningitis — a medical emergency.',
+            'High fever with stiff neck is a classic presentation of meningitis â€” a medical emergency.',
         immediateAction: 'Go to emergency hospital IMMEDIATELY. Call 108.',
         matchedSymptoms: symptoms,
         timestamp: now,
@@ -359,7 +359,7 @@ class TriageEngine {
       return TriageResult(
         severity: TriageSeverity.high,
         reasoning:
-            'A temperature of ≥103°F (39.4°C) requires prompt medical evaluation, '
+            'A temperature of â‰¥103Â°F (39.4Â°C) requires prompt medical evaluation, '
             'especially to rule out malaria, dengue, or typhoid in rural Maharashtra.',
         immediateAction:
             'Go to a PHC or hospital today. Give paracetamol to reduce fever. Hydrate well.',
@@ -423,7 +423,7 @@ class TriageEngine {
       );
     }
 
-    // ── MODERATE rules ──────────────────────────────────────────────────────
+    // â”€â”€ MODERATE rules â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     if (s.contains(Symptoms.moderateFever)) {
       final extras = s.intersection({
@@ -493,7 +493,7 @@ class TriageEngine {
         severity: TriageSeverity.high,
         reasoning:
             'Animal bites carry risk of rabies, especially from dogs, cats, monkeys, and bats. '
-            'Rabies is 100% fatal once symptoms appear — vaccination must start within 24 hours.',
+            'Rabies is 100% fatal once symptoms appear â€” vaccination must start within 24 hours.',
         immediateAction:
             'Wash wound with soap/water for 15 min. Go to hospital immediately for rabies vaccination.',
         matchedSymptoms: symptoms,
@@ -501,7 +501,7 @@ class TriageEngine {
       );
     }
 
-    // ── LOW rules (catch-all) ────────────────────────────────────────────────
+    // â”€â”€ LOW rules (catch-all) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     if (symptoms.isEmpty) {
       return TriageResult(

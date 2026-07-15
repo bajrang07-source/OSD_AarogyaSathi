@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 /// Data model for a transport contact stored in SQLite.
 class TransportContact {
   final int? id;

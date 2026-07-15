@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:aarogya_sathi/main_shell.dart';
 import 'package:aarogya_sathi/app.dart';
 
 /// Smoke test: every tab of the navigation shell renders without throwing.
